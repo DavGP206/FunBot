@@ -78,11 +78,11 @@ async def on_message(message):
         emb2.add_field(name="!!figyelmeztetes [Szöveg]", value="Kiírja a pmegadott szöveget Figyelmeztetés ként", inline=False)
         emb2.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb2)
-        
+
 @client.command(pass_context=True)
 async def purge(ctx, amount=0):
     if not ctx.message.server == None:
-        if ctx.message.author.server_permissions.manage_messages or ctx.message.author.id == "388697370725974016":
+        if ctx.message.author.server_permissions.manage_messages or ctx.message.author.id == "338748699129937930":
             channel = ctx.message.channel
             messages = []
             async for message in client.logs_from(channel, limit=int(amount)):
@@ -153,6 +153,6 @@ async def skip(ctx):
         players[id].stop()
     except:
         await client.say("A zenét átugrottam!")
-    return False                        
+    return False                       
 
 client.run(os.environ.get('TOKEN'))
