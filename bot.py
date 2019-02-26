@@ -130,4 +130,4 @@ async def skip(ctx):
         await client.say("A zenét átugrottam!")
     return False                        
 
-client.run("NDQyMjY5MTcxODU4OTMxNzIz.D1QXtA.Nv2FX8GoJPbLSX_EuJksP2n43Iw")
+client.run(os.environ.get('TOKEN'))
