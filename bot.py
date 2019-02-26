@@ -97,7 +97,7 @@ async def purge(ctx, amount=0):
 async def clear_error(error, ctx):
     if ctx.message.author.server_permissions.manage_messages or ctx.message.author.id == "338748699129937930":
         embed = discord.Embed(title='Hiba!', description='Használat: !!purge (szám)', colour=discord.Colour.gold())
-        embed.set_footer(text='LaserBot
+        embed.set_footer(text='LaserBot')
         await client.say(embed=embed)
     else:
         embed = discord.Embed(title='Hiba!', description='Ehhez nincs jogod!', colour=discord.Colour.gold())
