@@ -78,6 +78,31 @@ async def on_message(message):
         emb2.add_field(name="!!figyelmeztetes [Szöveg]", value="Kiírja a pmegadott szöveget Figyelmeztetés ként", inline=False)
         emb2.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb2)
+        
+@client.command(pass_context=True)
+async def purge(ctx, amount=0):
+    if not ctx.message.server == None:
+        if ctx.message.author.server_permissions.manage_messages or ctx.message.author.id == "388697370725974016":
+            channel = ctx.message.channel
+            messages = []
+            async for message in client.logs_from(channel, limit=int(amount)):
+                messages.append(message)
+            await client.delete_messages(messages)
+            await client.say("✅ Sikeresen töröltél **{}** üzenetet!.".format(int(amount)))
+        else:
+            await client.say("❌ Ehhez nincs jogod!")
+    else:
+        await client.say("❌ Privátban nem használható ez a parancs!")
+@purge.error
+async def clear_error(error, ctx):
+    if ctx.message.author.server_permissions.manage_messages or ctx.message.author.id == "338748699129937930":
+        embed = discord.Embed(title='Hiba!', description='Használat: !!purge (szám)', colour=discord.Colour.gold())
+        embed.set_footer(text='LaserBot
+        await client.say(embed=embed)
+    else:
+        embed = discord.Embed(title='Hiba!', description='Ehhez nincs jogod!', colour=discord.Colour.gold())
+        embed.set_footer(text='LaserBot')
+        await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def join(ctx):
