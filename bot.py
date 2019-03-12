@@ -32,6 +32,7 @@ def check_queue(id):
  
 @client.event
 async def on_ready():
+    await client.change_presence(game=discord.Game(name='Parancsok: !!help'))
     print("Bot online!")
  
 @client.event
@@ -120,5 +121,26 @@ async def unmute(ctx, member: discord.Member=None):
         return
     await client.add_roles(member, role)
     await client.say("A felhasználó már nincs némítva!")
+
+@client.command(pass_context=True)
+async def belep(ctx):
+    channel = ctx.message.author.voice.voice_channel
+    await client.join_voice_channel(channel)
+    await client.say("Beléptem a Voice channelbe!")
+
+@client.command(pass_context=True)
+async def kilep(ctx):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    await voice_client.disconnect()
+    await client.say("Kiléptem a Voice channelből!")
+
+@client.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
 
 client.run(os.environ.get('TOKEN'))
