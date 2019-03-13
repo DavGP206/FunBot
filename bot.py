@@ -151,7 +151,7 @@ async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
     async for messages in client.logs_from(channel, limit=int(amount)+ 1):
-        message.append(message)
+        messages.append(message)
     await client.delete_messages(messages)
     await client.say('Üzenetek törölve!')
 
