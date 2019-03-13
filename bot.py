@@ -91,25 +91,28 @@ async def on_message(message):
 @client.command(pass_context=True)
 async def kick(ctx, member: discord.Member=None):
     if not member:
-        await client.say("Kérlek említs meg felhasználót!")
-        return
+        if ctx.message.author.server_permissions.kick_members == True:
+            await client.say("Kérlek említs meg felhasználót!")
+            return
     await client.kick(member)
     await client.say("{} ki lett kickelve!".format(member.mention))
  
 @client.command(pass_context=True)
 async def ban(ctx, member: discord.Member=None):
     if not member:
-        await client.say("Kérlek említs meg felhasználót!")
-        return
-    await client.ban(member)
-    await client.say("{} ki lett bannolva!".format(member.mention))
+        if ctx.message.author.server_permissions.ban_members == True:
+            await client.say("Kérlek említs meg felhasználót!")
+            return
+        await client.ban(member)
+        await client.say("{} ki lett bannolva!".format(member.mention))
  
 @client.command(pass_context=True)
 async def mute(ctx, member: discord.Member=None):
     role = discord.utils.get(member.server.roles, name="Muted")
     if not member:
-        await client.say("Kérlek említs meg felhasználót!")
-        return
+        if ctx.message.author.server_permissions.kick_members == True:
+            await client.say("Kérlek említs meg felhasználót!")
+            return
     await client.add_roles(member, role)
     await client.say("Felhasználó némítva!")
  
@@ -142,5 +145,15 @@ async def play(ctx, url):
     player = await voice_client.create_ytdl_player(url)
     players[server.id] = player
     player.start()
+
+@client.command(pass_context=True)
+async def clear(ctx, amount=100):
+    channel = ctx.message.channel
+    messages = []
+    async for messages in client.logs_from(channel, limit=int(amount)+ 1):
+        message.append(message)
+    await client.delete_messages(messages)
+    await client.say('Üzenetek törölve!')
+
 
 client.run(os.environ.get('TOKEN'))
