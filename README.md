@@ -1,2 +1,2 @@
 # FunBot
-A FunBot Online tartoja.
+A FunBot Config
