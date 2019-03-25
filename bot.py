@@ -154,6 +154,29 @@ async def clear(ctx, amount=100):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say('Üzenetek törölve!')
+    
+@client.command(aliases=['user-info', 'ui'], pass_context=True, invoke_without_command=True)
+async def info(ctx, user: discord.Member):
+    '''Használat: ?!info <Név>'''
+    if not ctx.message.author.bot:
+        try:
+            embed = discord.Embed(title="Információk: {}-ról/ről".format(user.name), description="Ezeket találtam:", color=0x00ff00)
+            embed.add_field(name="Neve", value=user.name, inline=True)
+            embed.add_field(name='Beceneve', value=user.nick, inline=True)
+            embed.add_field(name="ID-je", value=user.id, inline=True)
+            embed.add_field(name="Állapota", value=user.status, inline=True)
+            embed.add_field(name='Játékban', value=user.game, inline=True)
+            embed.add_field(name="Legmagasabb rangja", value=user.top_role)
+            #embed.add_field(name="Csatlakozott", value=user.joined_at)
+            embed.add_field(name='Csatlakozott', value=user.joined_at.__format__('%A, %Y. %m. %d. @ %H:%M:%S'))
+            embed.set_author(name=user, icon_url=user.avatar_url)
+            embed.set_thumbnail(url=user.avatar_url)
+            embed.set_footer(text="LaserBot")
+            await client.say(embed=embed)
+        except:
+            await client.say("Hoppá! Valószínűleg nem említetted meg a felhasználót! :x:\nHelyes használat: !!info [említés]")
+    else:
+        return False
 
 
 client.run(os.environ.get('TOKEN'))
