@@ -177,6 +177,16 @@ async def info(ctx, user: discord.Member):
             await client.say("Hoppá! Valószínűleg nem említetted meg a felhasználót! :x:\nHelyes használat: !!info [említés]")
     else:
         return False
+     
+ @client.command(aliases=['invite', 'meghivas'], pass_context=True, invoke_without_command=True)
+async def invite(ctx):
+    '''Használat: !!invite'''
+    if not ctx.message.author.bot:
+        try:
+            embed = discord.Embed(title="A Bot meghívása a szerveredre:", description="https://discordapp.com/api/oauth2/authorize?client_id=442269171858931723&permissions=8&scope=bot", color=0x00ff00)
+            embed.add_field(name="Bot Szerverére meghívó:", value="https://discord.gg/uxkRKhw", inline=False)
+            embed.set_footer(text="LaserBot")
+            await client.say(embed=embed)
 
 
 client.run(os.environ.get('TOKEN'))
