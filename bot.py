@@ -85,6 +85,11 @@ async def on_message(message):
         emb2.add_field(name="!!figyelmeztetes [Szöveg]", value="Kiírja a pmegadott szöveget Figyelmeztetés ként", inline=False)
         emb2.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb2)
+        
+    if message.content.upper().startswith("!!INVITE"):
+        userID = message.author.id
+        await client.send_message(message.channel, "Bot meghívása a szerveredre: https://discordapp.com/api/oauth2/authorize?client_id=442269171858931723&permissions=8&scope=bot")
+        await client.send_message(message.channel, "Bot hivatalos szervere: https://discord.gg/uxkRKhw")
  
     await client.process_commands(message)
 
@@ -178,7 +183,7 @@ async def info(ctx, user: discord.Member):
     else:
         return False
      
- @client.command(aliases=['invite', 'meghivas'], pass_context=True, invoke_without_command=True)
+@client.command(aliases=['invite', 'meghivas'], pass_context=True, invoke_without_command=True)
 async def invite(ctx):
     '''Használat: !!invite'''
     if not ctx.message.author.bot:
