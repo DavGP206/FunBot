@@ -94,26 +94,6 @@ async def on_message(message):
     await client.process_commands(message)
 
 
- 
-@client.command(pass_context=True)
-async def mute(ctx, member: discord.Member=None):
-    role = discord.utils.get(member.server.roles, name="Muted")
-    if not member:
-        if ctx.message.author.server_permissions.kick_members ==
-            await client.say("Kérlek említs meg felhasználót!")
-            return
-    await client.add_roles(member, role)
-    await client.say("Felhasználó némítva!")
- 
-@client.command(pass_context=True)
-async def unmute(ctx, member: discord.Member=None):
-    role = discord.utils.get(member.server.roles, name="Muted")
-    if not member:
-        await client.say("Kérlek említs meg felhasználót!")
-        return
-    await client.add_roles(member, role)
-    await client.say("A felhasználó már nincs némítva!")
-
 @client.command(pass_context=True)
 async def belep(ctx):
     channel = ctx.message.author.voice.voice_channel
