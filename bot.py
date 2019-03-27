@@ -93,29 +93,13 @@ async def on_message(message):
  
     await client.process_commands(message)
 
-@client.command(pass_context=True)
-async def kick(ctx, member: discord.Member=None):
-    if not member:
-        if ctx.message.author.server_permissions.kick_members == True:
-            await client.say("Kérlek említs meg felhasználót!")
-            return
-    await client.kick(member)
-    await client.say("{} ki lett kickelve!".format(member.mention))
- 
-@client.command(pass_context=True)
-async def ban(ctx, member: discord.Member=None):
-    if not member:
-        if ctx.message.author.server_permissions.ban_members == True:
-            await client.say("Kérlek említs meg felhasználót!")
-            return
-        await client.ban(member)
-        await client.say("{} ki lett bannolva!".format(member.mention))
+
  
 @client.command(pass_context=True)
 async def mute(ctx, member: discord.Member=None):
     role = discord.utils.get(member.server.roles, name="Muted")
     if not member:
-        if ctx.message.author.server_permissions.kick_members == True:
+        if ctx.message.author.server_permissions.kick_members ==
             await client.say("Kérlek említs meg felhasználót!")
             return
     await client.add_roles(member, role)
