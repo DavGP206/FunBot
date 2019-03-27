@@ -47,6 +47,7 @@ async def on_message(message):
     if message.content.upper().startswith("!!FIGYELMEZTETES"):
         if message.author.server_permissions.administrator == True:
             args = message.content.split(" ")
+            await client.delete_messages("1")
             await client.send_message(message.channel, ":warning: Figyelem :warning:")
             await client.send_message(message.channel, "⠀")
             await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
