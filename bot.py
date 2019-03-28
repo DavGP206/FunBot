@@ -32,7 +32,7 @@ def check_queue(id):
       
 @client.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name="{} Szerver".format(str(len(client.servers)))))
+    await client.change_presence(game=discord.Game(name="{} Szerveren".format(str(len(client.servers)))))
     print("Bot online!")
  
 @client.event
@@ -76,14 +76,36 @@ async def on_message(message):
         emb.add_field(name="!!kex", value="Ad egy kexet", inline=False)
         emb.add_field(name="!!dobokocka", value="Mond egy számot 1-6 között", inline=False)
         emb.add_field(name="!!ping", value="Pong!", inline=False)
+        emb.add_field(name="!!invite", value="Bot szervere, bot meghívó linkje", inline=False)
+        emb.add_field(name="!!penz", value="Fej vagy Írás", inline=False)
+        emb.add_field(name="!!userinfo", value="Kiírja egy megadott személy információit", inline=False)
         emb.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb)
+
+    if message.content.upper().startswith("!!HELP"):
+        emb3 = (discord.Embed(Title="Cim", colour=0xFFFF00))
+        emb3.add_field(name="Zene parancsok", value="⠀")
+        emb3.add_field(name="!!belep", value="Bot belép a csatornádba", inline=False)
+        emb3.add_field(name="!!play [Link]", value="Lejátsza a megadott zenét! :warning: Csak akkor adj meg más zenét, ha a másik már lejárt, vagy a bot kifagy! :warning: Csak linkel küködik!", inline=False)
+        emb3.add_field(name="!!kilep", value="Bot kilép a csatornából", inline=False)
+        emb3.set_footer(text="LaserBot")
+        await client.send_message(message.channel, embed=emb2)
  
     if message.content.upper().startswith("!!HELP"):
         emb2 = (discord.Embed(Title="Cim", colour=0xff0000))
         emb2.add_field(name="Admin parancsok", value="⠀")
-        emb2.add_field(name="!!figyelmeztetes [Szöveg]", value="Kiírja a pmegadott szöveget Figyelmeztetés ként", inline=False)
+        emb2.add_field(name="!!clear [Szám]", value="Törli a chatben az üzeneteket", inline=False)
+        emb2.add_field(name="!!figyelmeztetes [Szöveg]", value="Kiírja a megadott szöveget Figyelmeztetés ként", inline=False)
         emb2.set_footer(text="LaserBot")
+        await client.send_message(message.channel, embed=emb2)
+
+    if message.content.upper().startswith("!!KESZITO"):
+        emb4 = (discord.Embed(Title="Cim", colour=0x0000CD))
+        emb4.add_field(name="Bot készítője", value="⠀")
+        emb4.add_field(name="OnlyDAVE", value="⠀", inline=False)
+        emb4.add_field(name="Szervere:", value="https://discord.gg/BnT2qA3", inline=False)
+        emb4.add_field(name="Programozási nyelv:", value="Discord.py", inline=False)
+        emb4.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb2)
         
     if message.content.upper().startswith("!!INVITE"):
