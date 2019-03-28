@@ -18,6 +18,7 @@ global bypass_list
 bot_prefix= "!!"
 client = commands.Bot(command_prefix=bot_prefix)
 Client = discord.Client()
+client.remove_command(“help”)
 vc_clients = {}
 version = 7.9
  
