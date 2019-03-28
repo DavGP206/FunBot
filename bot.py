@@ -79,6 +79,7 @@ async def on_message(message):
         emb.add_field(name="!!invite", value="Bot szervere, bot meghívó linkje", inline=False)
         emb.add_field(name="!!penz", value="Fej vagy Írás", inline=False)
         emb.add_field(name="!!userinfo", value="Kiírja egy megadott személy információit", inline=False)
+        emb.add_field(name="!!keszito", value="Kiírja a készítőm nevét", inline=False)
         emb.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb)
 
@@ -89,7 +90,7 @@ async def on_message(message):
         emb3.add_field(name="!!play [Link]", value="Lejátsza a megadott zenét! :warning: Csak akkor adj meg más zenét, ha a másik már lejárt, vagy a bot kifagy! :warning: Csak linkel küködik!", inline=False)
         emb3.add_field(name="!!kilep", value="Bot kilép a csatornából", inline=False)
         emb3.set_footer(text="LaserBot")
-        await client.send_message(message.channel, embed=emb2)
+        await client.send_message(message.channel, embed=emb3)
  
     if message.content.upper().startswith("!!HELP"):
         emb2 = (discord.Embed(Title="Cim", colour=0xff0000))
@@ -106,7 +107,7 @@ async def on_message(message):
         emb4.add_field(name="Szervere:", value="https://discord.gg/BnT2qA3", inline=False)
         emb4.add_field(name="Programozási nyelv:", value="Discord.py", inline=False)
         emb4.set_footer(text="LaserBot")
-        await client.send_message(message.channel, embed=emb2)
+        await client.send_message(message.channel, embed=emb4)
         
     if message.content.upper().startswith("!!INVITE"):
         userID = message.author.id
