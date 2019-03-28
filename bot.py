@@ -148,6 +148,21 @@ async def clear(ctx, amount=100):
     await client.delete_messages(messages)
     await client.say('Üzenetek törölve!')
     
+@client.command(pass_context=True)
+async def szerverinfo(ctx):
+    embed = discord.Embed(title="Információk a következő szerverről: {}".format(ctx.message.server.name), description="Ezeket találtam:", color=0x00ff00)
+    embed.add_field(name="Név: ", value=ctx.message.server.name, inline=True)
+    embed.add_field(name="ID: ", value=ctx.message.server.id, inline=True)
+    embed.add_field(name="Rangok: ", value=len(ctx.message.server.roles), inline=True)
+    embed.add_field(name="Tagok: ", value=len(ctx.message.server.members))
+    embed.add_field(name="Szerver létrehozási dátuma: ", value=ctx.message.server.created_at, inline=True)
+    embed.add_field(name="Szoba létrehozási dátuma: ",value=ctx.message.channel.created_at, inline=True)
+    embed.add_field(name="Jelenlegi szoba: ",value=ctx.message.channel, inline=True)
+    embed.add_field(name="Szerver tulajdonosa: ",value=ctx.message.server.owner.name, inline=True)
+    embed.add_field(name="Szerver tulajdonosának az állapota: ",value=ctx.message.server.owner.status, inline=True)
+    embed.add_field(name="Szerver régiója: ",value=ctx.message.server.region, inline=True)
+    embed.set_thumbnail(url=ctx.message.server.icon_url)
+    
 @client.command(aliases=['user-info', 'ui'], pass_context=True, invoke_without_command=True)
 async def info(ctx, user: discord.Member):
     '''Használat: ?!info <Név>'''
