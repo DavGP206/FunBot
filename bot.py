@@ -19,7 +19,7 @@ bot_prefix= "!!"
 client = commands.Bot(command_prefix=bot_prefix)
 Client = discord.Client()
 vc_clients = {}
-version = 2.3
+version = 7.9
  
 players = {}
 queues = {}
@@ -29,10 +29,10 @@ def check_queue(id):
         players = queues[id].pop(0)
         players[id] = players
         players.start()
- 
+      
 @client.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name='Parancsok: !!help'))
+    await client.change_presence(game=discord.Game(name="{} Szerver".format(str(len(client.servers)))))
     print("Bot online!")
  
 @client.event
