@@ -123,33 +123,37 @@ async def belep(ctx):
     channel = ctx.message.author.voice.voice_channel
     await client.join_voice_channel(channel)
     await client.say("Beléptem a Voice channelbe!")
+    
 @client.command(aliases=['server', 'sinfo', 'si', 'serverinfo'], pass_context=True)
 async def szerverinfo(ctx):
     if not ctx.message.author.bot:
         online = 0
         for i in ctx.message.server.members:
-            in str(i.status) == 'online' or str(i.status) == 'idle' or str(i.status) == 'dnd':
+            if str(i.status) == 'online' or str(i.status) == 'idle' or str(i.status) == 'dnd':
                 online += 1
         role_count = len(ctx.message.server.roles)
         emoji_count = len(ctx.message.server.emojis)
-        embed = discord.Embed(title="Információk a szerverről:", description="⠀", color=0x00ff00)
-        embed.add_field(name="Név:", value=ctx.message.server.name, inline=True)
-        embed.add_field(name="ID:", value=ctx.message.server.id, inline=True)
-        embed.add_field(name="Rangok:", value=len(ctx.message.server.roles), inline=True)
-        embed.add_field(name="Tagok:", value=len(ctx.message.server.members))
-        embed.add_field(name="Online:", value=online)
-        embed.add_field(name="Szerver készűlt:", value=ctx.message.server.created.at._format_('%A, %Y. %m. %d. @ %H:%M:%S'), inline=True)
-        embed.add_field(name="Jelenlegi szoba:", value=ctx.message.channel, inline=True)
-        embed.add_field(name="Tulajdonos:", value=ctx.message.server.owner.mention, inline=True)
-        embed.add_field(name="Szerver régió:", value=ctx.message.server.region, inline=True)
-        embed.add_field(name="Emoteok:", value=str(emoji_count))
-        embed.add_field(name="Legmagasabb rang:", value.message.server.role_hierarchy[0])
-        embed.set_tumbnail(url=ctx.message.server.icon_url)
+        embed = discord.Embed(title="Információk a következő szerverről: {}".format(ctx.message.server.name), description="Ezeket találtam:", color=0x00ff00)
+        embed.add_field(name="Név: ", value=ctx.message.server.name, inline=True)
+        embed.add_field(name="ID: ", value=ctx.message.server.id, inline=True)
+        embed.add_field(name="Rangok: ", value=len(ctx.message.server.roles), inline=True)
+        embed.add_field(name="Tagok: ", value=len(ctx.message.server.members))
+        embed.add_field(name='Jelenleg elérhető', value=online)
+        embed.add_field(name="Szerver létrehozási dátuma: ", value=ctx.message.server.created_at.__format__('%A, %Y. %m. %d. @ %H:%M:%S'), inline=True)
+        embed.add_field(name="Jelenlegi szoba létrehozási dátuma: ",value=ctx.message.channel.created_at.__format__('%A, %Y. %m. %d. @ %H:%M:%S'), inline=True)
+        embed.add_field(name="Jelenlegi szoba: ",value=ctx.message.channel, inline=True)
+        embed.add_field(name="Szerver tulajdonosa: ",value=ctx.message.server.owner.mention, inline=True)
+        embed.add_field(name="Szerver tulajdonosának az állapota: ",value=ctx.message.server.owner.status, inline=True)
+        embed.add_field(name="Szerver régiója: ",value=ctx.message.server.region, inline=True)
+        embed.add_field(name='Ellenőrzési szint', value=str(ctx.message.server.verification_level))
+        embed.add_field(name='Emoteok száma', value=str(emoji_count))
+        embed.add_field(name='Szerver legmagasabb rangja', value=ctx.message.server.role_hierarchy[0])
+        embed.set_thumbnail(url=ctx.message.server.icon_url)
         embed.set_author(name=ctx.message.server.name, icon_url=ctx.message.server.icon_url)
         embed.set_footer(text="LaserBot")
         await client.say(embed=embed)
     else:
-        return False    
+        return False
 
 @client.command(pass_context=True)
 async def kilep(ctx):
