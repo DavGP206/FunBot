@@ -181,7 +181,7 @@ async def clear(ctx, amount=100):
     
 @client.command(aliases=['user-info', 'ui'], pass_context=True, invoke_without_command=True)
 async def info(ctx, user: discord.Member):
-    '''Használat: ?!info <Név>'''
+    '''Használat: !!info <Név>'''
     if not ctx.message.author.bot:
         try:
             embed = discord.Embed(title="Információk: {}-ról/ről".format(user.name), description="Ezeket találtam:", color=0x00ff00)
@@ -201,6 +201,45 @@ async def info(ctx, user: discord.Member):
             await client.say("Hoppá! Valószínűleg nem említetted meg a felhasználót! :x:\nHelyes használat: !!info [említés]")
     else:
         return False
+   
+@client.command(pass_context=True)
+async def osszead(ctx, a: float, b: float):
+   if not ctx.message.author.bot:
+        try:
+             await client.say("Az eredmény: {}".format(a + b))
+        except:
+             await client.say("Csak számot adhatsz meg!..")
+   else:
+        pass
+    
+@client.command(pass_context=True)
+async def kivon(ctx, a: float, b: float):
+   if not ctx.message.author.bot:
+        try:
+             await client.say("Az eredmény: {}".format(a - b))
+        except:
+             await client.say("Csak számot adhatsz meg!..")
+   else:
+        pass
 
-
+@client.command(pass_context=True)
+async def plusz(ctx, a: float, b: float):
+   if not ctx.message.author.bot:
+        try:
+             await client.say("Az eredmény: {}".format(a * b))
+        except:
+             await client.say("Csak számot adhatsz meg!..")
+   else:
+        pass
+    
+@client.command(pass_context=True)
+async def plusz(ctx, a: float, b: float):
+   if not ctx.message.author.bot:
+        try:
+             await client.say("Az eredmény: {}".format(a / b))
+        except:
+             await client.say("Csak számot adhatsz meg. Vigyázz!! A nulla nem értelmezett szám!")
+   else:
+        pass
+    
 client.run(os.environ.get('TOKEN'))
