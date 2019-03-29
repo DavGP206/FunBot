@@ -223,7 +223,7 @@ async def kivon(ctx, a: float, b: float):
         pass
 
 @client.command(pass_context=True)
-async def plusz(ctx, a: float, b: float):
+async def szoroz(ctx, a: float, b: float):
    if not ctx.message.author.bot:
         try:
              await client.say("Az eredmény: {}".format(a * b))
@@ -233,7 +233,7 @@ async def plusz(ctx, a: float, b: float):
         pass
     
 @client.command(pass_context=True)
-async def plusz(ctx, a: float, b: float):
+async def oszt(ctx, a: float, b: float):
    if not ctx.message.author.bot:
         try:
              await client.say("Az eredmény: {}".format(a / b))
