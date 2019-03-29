@@ -242,4 +242,13 @@ async def oszt(ctx, a: float, b: float):
    else:
         pass
     
+@client.command(pass_context=True)
+async def esay(ctx, * ,message2):
+    if not ctx.message.author.bot:
+        await client.delete_message(ctx.message)
+        embed = discord.Embed(title=message2, color=0x00ff00)
+        await client.say(embed=embed)
+    else: 
+        pass
+    
 client.run(os.environ.get('TOKEN'))
