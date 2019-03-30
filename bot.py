@@ -278,5 +278,20 @@ async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot
             await client.say("**Nincs jogom kirúgni az embereket! **Szükséged jog: Tagok Kickelése**!")
     else:
         return false
+     
+@client.command(aliases=['kirugas'], pass_context=True, no_pm=True)
+async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot!)"):
+    if not ctx.message.author.bot:
+        if ctx.message.server.me.server_permissions.ban_members:
+            if ctx.message.author.server_permissions.ban_members == True:
+                await client.send_message(user, "Bannolva lettél a **{}** szerverről {} által, a következő okkal: **".format(ctx.message.server.name, ctx.message.author) + reason + "**")
+                await client.say("**{}** sikeresen ki lett Bannolva a szerverről! :white_check_mark:".format(user, ctx.message.server.name))
+                await client.ban(user)
+            else:
+                await client.say("Nincs jogod ehhez a parancshoz! :x: \n**Szükséges jog: Tagok Bannolása**")
+        else:
+            await client.say("**Nincs jogom kirúgni az embereket! **Szükséged jog: Tagok Bannolása**!")
+    else:
+        return false
     
 client.run(os.environ.get('TOKEN'))
