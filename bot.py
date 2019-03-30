@@ -267,8 +267,8 @@ async def esay(ctx, * ,message2):
 @client.command(aliases=['kirugas'], pass_context=True, no_pm=True)
 async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot!)"):
     if not ctx.message.author.bot:
-        if ctx.message.server.me.server_permissions.kick.members:
-            if ctx.message.author.server_permissions.kick.members == True:
+        if ctx.message.server.me.server_permissions.kick_members:
+            if ctx.message.author.server_permissions.kick_members == True:
                 await client.send_message(user, "Kickelve lettél a **{}** szerverről {} által, a következő okkal: **".format(ctx.message.server.name, ctx.message.author) + reason + "**")
                 await client.say("**{}** sikeresen ki lett kickelve a szerverről! :white_check_mark:".format(user, ctx.message.server.name))
                 await client.kick(user)
