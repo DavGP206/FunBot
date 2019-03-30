@@ -280,7 +280,7 @@ async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot
         return false
      
 @client.command(aliases=['kirugas'], pass_context=True, no_pm=True)
-async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot!)"):
+async def ban(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot!)"):
     if not ctx.message.author.bot:
         if ctx.message.server.me.server_permissions.ban_members:
             if ctx.message.author.server_permissions.ban_members == True:
