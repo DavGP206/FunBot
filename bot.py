@@ -82,8 +82,8 @@ async def on_message(message):
         emb.add_field(name="!!penz", value="Fej vagy Írás", inline=False)
         emb.add_field(name="!!userinfo", value="Kiírja egy megadott személy információit", inline=False)
         emb.add_field(name="!!keszito", value="Kiírja a készítőm nevét", inline=False)
-        emb.add_field(name="!!serverinfo", value="Kiírja a jelenlegi szerver információit"
-        emb.add_field(name="!!esay [Szöveg]", value="Kiírja a megadott szöveget Embed üzenet ként"
+        emb.add_field(name="!!serverinfo", value="Kiírja a jelenlegi szerver információit", inline=False)
+        emb.add_field(name="!!esay [Szöveg]", value="Kiírja a megadott szöveget Embed üzenet ként", inline=False)
         emb.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb)
 
