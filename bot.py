@@ -82,6 +82,8 @@ async def on_message(message):
         emb.add_field(name="!!penz", value="Fej vagy Írás", inline=False)
         emb.add_field(name="!!userinfo", value="Kiírja egy megadott személy információit", inline=False)
         emb.add_field(name="!!keszito", value="Kiírja a készítőm nevét", inline=False)
+        emb.add_field(name="!!serverinfo", value="Kiírja a jelenlegi szerver információit"
+        emb.add_field(name="!!esay [Szöveg]", value="Kiírja a megadott szöveget Embed üzenet ként"
         emb.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb)
 
@@ -93,6 +95,16 @@ async def on_message(message):
         emb3.add_field(name="!!kilep", value="Bot kilép a csatornából", inline=False)
         emb3.set_footer(text="LaserBot")
         await client.send_message(message.channel, embed=emb3)
+                      
+    if message.content.upper().startswith("!!HELP"):
+        embed = (discord.Embed(Title="Cim", colour=0x00FFFF))
+        embed.add_field(name="Matek parancsok", value="⠀")
+        embed.add_field(name="!!osszead [Szám] [Szám]", value="Összeadja a megadott számokat", inline=False)
+        embed.add_field(name="!!kivon [Szám] [Szám]", value="Kivonja a megadott számokat", inline=False)
+        embed.add_field(name="!!szoroz [Szám] [Szám]", value="Összeszorozza a megadott számokat", inline=False)
+        embed.add_field(name="!!eloszt [Szám] [Szám]", value="Elosztja a megadott számokat", inline=False)
+        embed.set_footer(text="LaserBot")
+        await client.send_message(message.channel, embed=embed)
  
     if message.content.upper().startswith("!!HELP"):
         emb2 = (discord.Embed(Title="Cim", colour=0xff0000))
