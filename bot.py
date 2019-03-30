@@ -263,5 +263,20 @@ async def esay(ctx, * ,message2):
         await client.say(embed=embed)
     else: 
         pass
+     
+@client.command(aliases=['kirugas'], pass_context=True, no_pm=True)
+async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot!)"):
+    if not ctx.message.author.bot:
+        if ctx.message.server.me.server_permissions.kick.members:
+            if ctx message.author.server_permissions.kick.members == True:
+                await client.send_message(user, "Kickelve lettél a **{}** szerverről {} által, a következő okkal: **".format(ctx.message.server.name, ctx.message.author) + reason + "**")
+                await client.say("**{}** sikeresen ki lett kickelve a szerverről! :white_check_mark:".format(user, ctx.message.server.name))
+                await client.kick(user)
+            else:
+                await client.say("Nincs jogod ehhez a parancshoz! :x: \n**Szükséges jog: Tagok Kickelése**")
+        else:
+            await client.say("**Nincs jogom kirúgni az embereket! **Szükséged jog: Tagok Kickelése**!")
+    else:
+        return false
     
 client.run(os.environ.get('TOKEN'))
