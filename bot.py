@@ -290,5 +290,19 @@ async def szavazás(ctx, *, message2):
     else:
         pass
     
+@client.command(aliases=['kitiltás'], pass_context = True)
+async def ban(ctx, member: discord.Member, days: int, *, reason : str= "(Nincs ok csatolva!)"):
+    if not ctx.message.author.bot:
+        if ctx.message.server.me.server_permissions.ban_members:
+            if ctx.message.author.server_permissions.ban_members == True:
+                await client.send_message(member, "Ki lettél bannolva a **{}** szerverről {} napra {} által a következő indokkal: **{}**".format(ctx.message.server.name, days ,ctx.message.author, reason))
+                await client.ban(member, days)
+                await client.say("**{}** **{}** napra sikeresen ki lett tiltva a **{}** szerverről! :white_check_mark:".format(member, days, ctx.message.server.name))
+            else:
+                await client.say("Nincs jogod a parancs használatához! :x: \nSzükséges jog: **Tagok kitiltása**")
+        else:
+            await client.say("**Tagok kitiltása** jog szükséges a számomra, hogy használni tudd a parancsot! :x:")
+    else:
+        pass
     
 client.run(os.environ.get('TOKEN'))
