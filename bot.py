@@ -278,6 +278,17 @@ async def kick(ctx, user: discord.Member, * ,reason : str= "(Nem adtál meg okot
             await client.say("**Nincs jogom kirúgni az embereket! **Szükséged jog: Tagok Kickelése**!")
     else:
         return false
+     
+     
+@client.command(aliases=['poll', 'szavaz', 'szavazas'], pass_context=True)
+async def szavazás(ctx, *, message2):
+    if not ctx.message.author.bot:
+        await client.delete_message(ctx.message)
+        szavazas = await client.say("**{}**".format(message2))
+        await client.add_reaction(szavazas, '✅')
+        await client.add_reaction(szavazas, '❌')
+    else:
+        pass
     
     
 client.run(os.environ.get('TOKEN'))
