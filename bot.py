@@ -60,7 +60,6 @@ async def on_message(message):
             await client.send_message(message.channel, embed=emb3)
             
     if message.content.upper().startswith("!!OD-PROJ"):
-        userID = message.author.id
         await client.send_message(message.channel, "```diff
 - OD-Projekt #1 -
 ```
