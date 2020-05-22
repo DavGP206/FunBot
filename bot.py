@@ -58,18 +58,6 @@ async def on_message(message):
             emb3 = (discord.Embed(Title="Cim", colour=0xff0000))
             emb3.add_field(name="Ehhez nincs jogod! :(", value="LaserBot")
             await client.send_message(message.channel, embed=emb3)
-            
-    if message.content.upper().startswith("!!OD-PROJ"):
-        await client.send_message(message.channel, "```diff
-- OD-Projekt #1 -
-```
-
-**__Sziasztok!__** Üdvözöllek az első **OD-Projekten**. A Projektet vezetője: @OnlyDAVE#3872.
-
-**`Projekt #1`**: A szerveren **MINDENKINEK MINDENHEZ** van joga *(kivéve ban)*... Mindenki eldönti, hogy elkezdi **építeni** a szervert, **csapatot** készít, **vagy** **szértombol** mindent.. Döntsetek okosan.  A szerveren bármi lehet, bannt úgysem fog **SENKI** kapni! Sok sikert mindenkinek a szerverhez.
-
-https://discord.gg/kPsmb4w")
-        
  
     if message.content.upper().startswith("!!DOBOKOCKA"):
         await client.send_message(message.channel, random.choice([":game_die: Ennyit dobtál: 1",
