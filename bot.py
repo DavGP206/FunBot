@@ -9,7 +9,7 @@ import os
 import youtube_dl
 import hashlib
 import os
-bot_prefix= "!!"
+bot_prefix= "="
 client = commands.Bot(command_prefix=bot_prefix)
 Client = discord.Client()
 client.remove_command('help')
@@ -21,7 +21,8 @@ async def on_ready():
     print("Bot online!")
  
 @client.event
-    if message.content.upper().startswith("!!FIGYELMEZTETES"):
+async def on_message(message):
+    if message.content.upper().startswith("=UNKNOWN"):
             args = message.content.split(" ")
             await client.delete_message(ctx.message)
             await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
