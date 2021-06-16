@@ -25,7 +25,7 @@ async def on_message(message):
     if message.content.upper().startswith("=UNKNOWN"):
             args = message.content.split(" ")
             await client.delete_message(message)
-            await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
+            await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
  
     
 client.run(os.environ.get('TOKEN'))
