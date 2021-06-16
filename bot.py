@@ -24,7 +24,7 @@ async def on_ready():
 async def on_message(message):
     if message.content.upper().startswith("=UNKNOWN"):
             args = message.content.split(" ")
-            await client.delete_message(ctx.message)
+            await client.delete_message(message)
             await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
  
     
