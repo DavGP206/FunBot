@@ -15,7 +15,6 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="Here to help!"))
     print("Bot online!")
        if message.content.upper().startswith("!!UNKNOWN"):
-    if message.content.upper().startswith("=unknown"):
             args = message.content.split(" ")
             await client.delete_message(ctx.message)
             await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
