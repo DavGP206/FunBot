@@ -26,7 +26,7 @@ async def on_message(message):
             channel = client.get_channel(854984443881979934)
             args = message.content.split(" ")
             await client.delete_message(message)
-            await channel.send("%s" % (" ".join(args[1:])))
+            await client.send(channel, "%s" % (" ".join(args[1:])))
  
     
 client.run(os.environ.get('TOKEN'))
