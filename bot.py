@@ -23,7 +23,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.upper().startswith("=UNKNOWN"):
-            channel = get_channel(854984443881979934)
+            channel = client.get_channel(854984443881979934)
             args = message.content.split(" ")
             await client.delete_message(message)
             await channel.send("%s" % (" ".join(args[1:])))
