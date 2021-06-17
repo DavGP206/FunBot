@@ -21,7 +21,7 @@ async def on_ready():
     print("Bot online!")
  
 @client.command()
-async def unknown(ctx, a, *):
+async def unknown(ctx, a):
   channel = client.get_channel(854984443881979934)
   await ctx.delete()
   await ctx.send(channel=channel, content=f":exclamation: {a}")
