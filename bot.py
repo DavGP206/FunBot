@@ -21,10 +21,9 @@ async def on_ready():
     print("Bot online!")
  
 @client.command()
-async def unknown(ctx, a):
-  channel = client.get_channel(854984443881979934)
-  await ctx.delete()
-  await ctx.send(channel=channel, content=f":exclamation: {a}")
+async def unknown(self, ctx, channelname, *, message):
+        channel = bot.get_channel(854984488408055809)
+        await channel.send(message)
  
     
 client.run(os.environ.get('TOKEN'))
