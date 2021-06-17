@@ -22,10 +22,11 @@ async def on_ready():
  
 @client.event
 async def on_message(message):
+  channel = bot.get_channel(854984443881979934)
     if message.content.upper().startswith("=UNKNOWN"):
             args = message.content.split(" ")
             await client.delete_message(message)
-            await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
+            await channel.send("%s" % (" ".join(args[1:])))
  
     
 client.run(os.environ.get('TOKEN'))
