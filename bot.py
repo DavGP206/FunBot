@@ -20,11 +20,11 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="Here to help!"))
     print("Bot online!")
  
-@client.event
-async def on_message(message):
-    if message.content.upper().startswith("=UNKNOWN"):
-            args = message.content.split(" ")
-            await client.delete_message(ctx.message)
-            await client.send_message(message.channel, ":exclamation: %s" % (" ".join(args[1:])))
+@Bot.command()
+async def say(ctx, *, message):
+    try:
+        await ctx.send(message)
+    except:
+        await ctx.send("Please Give Some Message!")
     
 client.run(os.environ.get('TOKEN'))
