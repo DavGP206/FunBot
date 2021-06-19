@@ -22,8 +22,9 @@ async def on_ready():
  
 @client.command()
 async def unknown(ctx, *, a):
-  channel = client.get_channel(854984443881979934)
-  await ctx.delete()
-  await channel.send(":exclamation: " + a) 
+    if message.content.upper().startswith("!!UNKNOWN"):
+            args = message.content.split(" ")
+            await client.delete_message(ctx.message)
+            await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
     
 client.run(os.environ.get('TOKEN'))
