@@ -6,7 +6,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import datetime, time
 import os
-import youtube_dl
 import hashlib
 import os
 bot_prefix= "="
@@ -20,11 +19,12 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="Here to help!"))
     print("Bot online!")
  
-@Bot.command()
-async def say(ctx, *, message):
-    try:
-        await ctx.send(message)
-    except:
-        await ctx.send("Please Give Some Message!")
+@client.command
+async def say(ctx, *, text=''):
+    if text == '':
+        ctx.send("You need to say something")
+    else:
+        ctx.send(text)
+        ctx.message.delete()
     
 client.run(os.environ.get('TOKEN'))
