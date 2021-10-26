@@ -13,4 +13,4 @@ async def background_loop():
         await asyncio.sleep(120)
 
 client.loop.create_task(background_loop())
-client.run(os.environ.get('TOKEN'))
+client.run("OTAyMjQxNzA5OTEwNTQwMzgz.YXbkEg.3ISSjLdjoyBa3ZUiYV1lGJyQBWg")
